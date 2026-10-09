@@ -1,0 +1,992 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Guía visual en español sencillo sobre trombosis venosa profunda y embolia pulmonar: señales, riesgo, tríada de Virchow, prevención, medias de compresión y cuándo pedir ayuda.">
+<meta property="og:title" content="Trombosis en claro">
+<meta property="og:description" content="Guía visual en español sencillo sobre trombosis venosa profunda y embolia pulmonar.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<title>Trombosis en claro</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,700..800&display=swap">
+<style>
+:root{
+  /* Concepto: app de bolsillo. Cabecera fija con botón de urgencias, una sola columna al centro y navegación de 5 pestañas abajo. Venas azules, coágulo rojo. */
+  --bg:#EDF2F6; --surface:#FFFFFF; --surface-2:#E2EBF2; --fg:#10253A; --fg-2:#4A6177; --line:#CBD8E3;
+  --vein:#2A5E91; --vein-soft:#DCE9F5; --on-vein:#FFFFFF;
+  --clot:#B4233A; --clot-soft:#F9E1E5;
+  --ok:#1F7A55; --ok-soft:#DDF1E8; --warn:#8A5A00; --warn-soft:#FBEBCB;
+  --sos:#B4233A; --on-sos:#FFFFFF; --art:#D2DFEB;
+  --f-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1620; --surface:#122230; --surface-2:#1A2F40; --fg:#E7EEF5; --fg-2:#9FB3C5; --line:#26394A;
+    --vein:#6CA7E0; --vein-soft:#1B3550; --on-vein:#08131D;
+    --clot:#FF7084; --clot-soft:#3A1822;
+    --ok:#58D6A0; --ok-soft:#133528; --warn:#F2BE5C; --warn-soft:#3A2D10;
+    --sos:#D13A50; --on-sos:#FFFFFF; --art:#233B50;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1620; --surface:#122230; --surface-2:#1A2F40; --fg:#E7EEF5; --fg-2:#9FB3C5; --line:#26394A;
+  --vein:#6CA7E0; --vein-soft:#1B3550; --on-vein:#08131D;
+  --clot:#FF7084; --clot-soft:#3A1822;
+  --ok:#58D6A0; --ok-soft:#133528; --warn:#F2BE5C; --warn-soft:#3A2D10;
+  --sos:#D13A50; --on-sos:#FFFFFF; --art:#233B50;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.55;margin:0}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(28px,8vw,36px);line-height:1.08;font-weight:800}
+h2{font-size:22px;line-height:1.15;font-weight:800}
+h3{font-size:18px;line-height:1.2;font-weight:700}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--vein);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding-inline:16px}
+
+/* cabecera */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:800;font-size:17px;min-width:0;white-space:nowrap}
+.brand svg{flex:none}
+.sos{display:inline-flex;align-items:center;gap:6px;background:var(--sos);color:var(--on-sos);border:0;border-radius:999px;padding:10px 14px;flex:none;min-height:44px;font-weight:700;font-size:15px}
+.sos svg{width:18px;height:18px}
+
+/* paneles */
+main{padding-block:20px 120px}
+.panel{display:flex;flex-direction:column;gap:20px}
+.kicker{font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--vein)}
+.lead{font-size:18px;color:var(--fg-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+figure{margin:0}
+.art{display:block;width:100%;max-width:340px;height:auto;margin:0 auto}
+
+/* ilustración */
+.figure-body *{fill:var(--art)}
+.lung{fill:var(--vein-soft);stroke:var(--vein);stroke-width:1.5;transition:fill .6s,stroke .6s}
+.lung.blocked{fill:var(--clot-soft);stroke:var(--clot);stroke-dasharray:5 3}
+.heart{fill:var(--clot-soft);stroke:var(--clot);stroke-width:1.5}
+.vein{fill:none;stroke:var(--vein);stroke-width:5;stroke-linecap:round}
+.clot{fill:var(--clot);stroke:var(--surface);stroke-width:1.5}
+.halo{fill:var(--clot);opacity:.18;transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.35);opacity:.08}}
+.lbl text{font-family:var(--f-body);font-size:12px;fill:var(--fg-2)}
+.lbl line{stroke:var(--fg-2);stroke-width:1}
+.branch{fill:none;stroke:var(--vein);stroke-width:3;stroke-linecap:round}
+.branch.dim{opacity:.4;stroke-dasharray:2 5}
+
+/* pasos */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.step{display:flex;flex-direction:column;align-items:center;gap:2px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:8px 4px;min-height:60px;font-size:14px;font-weight:700;text-align:center;line-height:1.2}
+.step b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--surface);color:var(--vein);font-size:13px}
+.step[aria-pressed="true"]{background:var(--vein);border-color:var(--vein);color:var(--on-vein)}
+.step[aria-pressed="true"] b{background:var(--on-vein);color:var(--vein)}
+.cap{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+.cap p{color:var(--fg-2)}
+
+/* tarjetas de definición */
+.defs{display:flex;flex-direction:column;gap:12px}
+.def{display:flex;flex-direction:column;gap:6px}
+.tag{align-self:flex-start;font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:3px 10px}
+.tag.v{background:var(--vein-soft);color:var(--vein)}
+.tag.c{background:var(--clot-soft);color:var(--clot)}
+.def p{color:var(--fg-2)}
+.note{background:var(--vein-soft);border-radius:14px;padding:14px 16px;color:var(--fg)}
+.alert{background:var(--clot-soft);border:1px solid var(--clot);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.alert strong{color:var(--clot)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 18px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-weight:700}
+.btn.primary{background:var(--vein);border-color:var(--vein);color:var(--on-vein)}
+.btn.danger{background:var(--sos);border-color:var(--sos);color:var(--on-sos)}
+
+/* control segmentado */
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--surface-2);padding:4px;border-radius:14px}
+.seg button{border:0;background:transparent;border-radius:10px;min-height:48px;font-weight:700;line-height:1.15;padding:6px 8px}
+.seg button[aria-pressed="true"]{background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.14)}
+.seg small{display:block;font-weight:400;color:var(--fg-2);font-size:13px}
+.sub{display:flex;flex-direction:column;gap:16px}
+
+/* listas de señales */
+.signs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.signs li{display:grid;grid-template-columns:14px 1fr;gap:12px;align-items:start}
+.signs li::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--vein);margin-top:7px}
+.signs.red li::before{background:var(--clot)}
+.signs b{display:block}
+.signs span{color:var(--fg-2);font-size:16px}
+
+/* riesgo */
+.group{display:flex;flex-direction:column;gap:8px}
+.group h3{font-size:14px;font-family:var(--f-body);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-2)}
+.chip{display:flex;align-items:center;gap:12px;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;min-height:52px;cursor:pointer;line-height:1.3}
+.chip input{width:22px;height:22px;accent-color:var(--vein);flex:none;margin:0}
+.chip.on{border-color:var(--vein);background:var(--vein-soft)}
+.meter{position:sticky;top:calc(56px + env(safe-area-inset-top,0px));z-index:5;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.bars{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.bars i{height:10px;border-radius:5px;background:var(--surface-2)}
+.meter[data-level="1"] .bars i:nth-child(-n+1){background:var(--ok)}
+.meter[data-level="2"] .bars i:nth-child(-n+2){background:var(--warn)}
+.meter[data-level="3"] .bars i{background:var(--clot)}
+.meter .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.meter .lv{font-weight:700}
+.meter .n{font-variant-numeric:tabular-nums;color:var(--fg-2);font-size:15px}
+.msg{font-size:16px;color:var(--fg-2)}
+
+/* prevenir */
+.tips{display:flex;flex-direction:column;gap:12px}
+.tip{display:flex;flex-direction:column;gap:6px}
+.tip ul{margin:0;padding-left:20px;color:var(--fg-2);display:flex;flex-direction:column;gap:4px}
+.foot{transform-box:view-box;transform-origin:67px 100px;transition:transform .7s ease-in-out}
+.pace{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.pace .count{font-family:var(--f-display);font-weight:800;font-size:28px;font-variant-numeric:tabular-nums}
+.pace .state{min-height:1.6em;color:var(--fg-2)}
+.prog{width:100%;height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--vein);transition:width .4s}
+
+/* más */
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 16px}
+summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px;font-family:var(--f-display);font-weight:700;font-size:18px;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";width:10px;height:10px;border-right:2.5px solid var(--vein);border-bottom:2.5px solid var(--vein);transform:rotate(45deg);transition:transform .2s;flex:none;margin-right:4px}
+details[open] summary::after{transform:rotate(-135deg)}
+details .body{padding-bottom:16px;display:flex;flex-direction:column;gap:10px;color:var(--fg-2)}
+details .body b{color:var(--fg)}
+.myth{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:12px}
+.myth .q{font-weight:700}
+.ans{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ans button{min-height:46px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface-2);font-weight:700}
+.ans button:disabled{cursor:default}
+.ans button.pick{border-color:var(--vein)}
+.res{padding:10px 12px;border-radius:10px;font-size:16px}
+.res.good{background:var(--ok-soft)}
+.res.bad{background:var(--warn-soft)}
+.res b{display:block}
+.score{font-variant-numeric:tabular-nums;color:var(--fg-2);font-size:15px}
+.legal{font-size:14px;color:var(--fg-2);border-top:1px solid var(--line);padding-top:16px;margin-top:8px}
+
+/* navegación */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabs-in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+.tab{border:0;background:transparent;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 2px 8px;min-height:62px;font-size:12px;font-weight:700;color:var(--fg-2)}
+.tab .ico{display:grid;place-items:center;width:46px;height:28px;border-radius:14px}
+.tab svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tab[aria-current="page"]{color:var(--vein)}
+.tab[aria-current="page"] .ico{background:var(--vein-soft)}
+
+/* urgencias */
+.sheet{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center}
+[hidden]{display:none!important}
+.scrim{position:absolute;inset:0;background:rgba(5,12,20,.6)}
+.sheet-body{position:relative;width:100%;max-width:560px;max-height:88%;overflow-y:auto;background:var(--surface);border-radius:22px 22px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px}
+.sheet-body h2{color:var(--clot)}
+.sheet-body .lg{background:var(--clot-soft);border-radius:12px;padding:12px 14px}
+.sheet-body ul{margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.num{font-family:var(--f-display);font-weight:800;font-size:30px;color:var(--clot);user-select:all}
+
+/* tríada de Virchow */
+.node{cursor:pointer}
+.node circle{fill:var(--surface);stroke:var(--vein);stroke-width:2.5;transition:fill .25s}
+.node .ic{fill:none;stroke:var(--vein);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.node.on circle{fill:var(--vein)}
+.node.on .ic{stroke:var(--on-vein)}
+.tl{font-family:var(--f-body);font-size:14px;font-weight:700;fill:var(--fg)}
+.tri-edge{fill:none;stroke:var(--fg-2);stroke-width:2;opacity:.45;stroke-linejoin:round}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.opt{display:flex;align-items:center;justify-content:center;text-align:center;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:8px 6px;min-height:56px;font-size:14px;font-weight:700;line-height:1.2}
+.opt[aria-pressed="true"]{background:var(--vein);border-color:var(--vein);color:var(--on-vein)}
+.pills{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.pills li{background:var(--vein-soft);border-radius:999px;padding:5px 12px;font-size:15px}
+
+/* medias de compresión */
+.lvls{display:flex;flex-direction:column;gap:12px}
+.lvl{display:grid;grid-template-columns:112px 1fr;gap:12px;align-items:start;color:var(--fg-2)}
+.lvl b{background:var(--vein-soft);color:var(--vein);border-radius:8px;padding:4px 6px;text-align:center;font-size:14px;font-variant-numeric:tabular-nums}
+ol.stepsl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;counter-reset:s}
+ol.stepsl li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;color:var(--fg-2)}
+ol.stepsl li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--vein);color:var(--on-vein);font-weight:700;font-size:14px}
+.warnbox{background:var(--warn-soft);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.warnbox strong{color:var(--warn)}
+.warnbox ul,details .body ul,.qlist{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.qlist{color:var(--fg)}
+dl.gl{display:flex;flex-direction:column;gap:10px;margin:0}
+dl.gl dt{font-weight:700;color:var(--fg)}
+dl.gl dd{margin:0}
+.copymsg{font-size:15px;color:var(--fg-2);min-height:1.4em}
+.refs{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:15.5px;color:var(--fg-2)}
+.refs a{color:var(--vein);font-weight:700;overflow-wrap:anywhere}
+.refgroup{display:flex;flex-direction:column;gap:8px}
+.refgroup h3{font-size:14px;font-family:var(--f-body);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-2)}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+:root{padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+img{max-width:100%}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M4 24 C10 22 12 10 18 8 C22 7 25 9 27 6" fill="none" stroke="var(--vein)" stroke-width="4" stroke-linecap="round"/><circle cx="15" cy="15" r="5" fill="var(--clot)"/></svg>
+      <span>Trombosis en claro</span>
+    </div>
+    <button class="sos" id="sosBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></svg>
+      Urgencias
+    </button>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 1. QUÉ ES -->
+<section class="panel" id="p-que">
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <p class="kicker">Trombosis venosa profunda y embolia pulmonar</p>
+    <h1>Un coágulo que se forma en la pierna puede llegar al pulmón.</h1>
+    <p class="lead">Se puede prevenir y se puede tratar. Lo más importante es reconocer las señales a tiempo. Toca los pasos para ver cómo ocurre.</p>
+  </div>
+
+  <figure class="card">
+    <svg class="art" viewBox="0 0 320 440" role="img" aria-labelledby="jt jd">
+      <title id="jt">Recorrido de un coágulo</title>
+      <desc id="jd">Un coágulo se forma en una vena de la pierna, sube hasta el corazón y llega a un pulmón.</desc>
+      <g class="figure-body">
+        <circle cx="160" cy="42" r="22"/>
+        <rect x="150" y="60" width="20" height="24" rx="6"/>
+        <path d="M112 80 C135 72 185 72 208 80 C222 86 226 110 224 150 L220 255 C190 266 130 266 100 255 L96 150 C94 110 98 86 112 80 Z"/>
+        <path d="M98 252 L158 262 L148 410 Q146 424 132 424 Q118 424 116 410 Z"/>
+        <path d="M222 252 L162 262 L172 410 Q174 424 188 424 Q202 424 204 410 Z"/>
+      </g>
+      <path id="lungL" class="lung" d="M148 104 C128 104 112 130 112 165 C112 195 126 206 146 200 C152 198 154 190 154 180 L154 112 Z"/>
+      <path class="lung" style="stroke:var(--vein)" d="M172 104 C192 104 208 130 208 165 C208 195 194 206 174 200 C168 198 166 190 166 180 L166 112 Z"/>
+      <path id="vein" class="vein" d="M133 402 C131 360 136 312 141 276 C146 240 156 222 158 196 C158 180 160 172 158 164 C152 156 140 150 128 148"/>
+      <path class="heart" d="M160 192 C139 177 141 151 154 151 C158 151 160 155 160 158 C160 155 162 151 166 151 C179 151 181 177 160 192 Z"/>
+      <g class="lbl">
+        <text x="108" y="386" text-anchor="end">Vena profunda</text>
+        <text x="108" y="401" text-anchor="end">de la pierna</text>
+        <text x="106" y="136" text-anchor="end">Pulmón</text>
+        <text x="174" y="218">Corazón</text>
+        <line x1="172" y1="208" x2="165" y2="194"/>
+      </g>
+      <g id="clot" transform="translate(133 385)">
+        <circle class="halo" r="15"/>
+        <path class="clot" d="M-7 -2 C-8 -7 -2 -9 2 -7 C7 -8 9 -2 7 2 C8 7 2 9 -2 7 C-7 8 -9 3 -7 -2 Z"/>
+      </g>
+    </svg>
+    <div class="steps" id="steps">
+      <button type="button" class="step" aria-pressed="true" data-i="0"><b>1</b>La pierna</button>
+      <button type="button" class="step" aria-pressed="false" data-i="1"><b>2</b>El viaje</button>
+      <button type="button" class="step" aria-pressed="false" data-i="2"><b>3</b>El pulmón</button>
+    </div>
+    <figcaption class="cap" aria-live="polite">
+      <h2 id="capT">Se forma el coágulo</h2>
+      <p id="capP">En una vena profunda de la pierna la sangre se mueve más lento y se junta en un coágulo. Esto se llama trombosis venosa profunda.</p>
+    </figcaption>
+  </figure>
+
+  <div class="defs">
+    <div class="card def">
+      <span class="tag v">En la pierna</span>
+      <h3>Trombosis venosa profunda (TVP)</h3>
+      <p>Un coágulo en una vena profunda, casi siempre de la pierna. Suele afectar solo un lado.</p>
+    </div>
+    <div class="card def">
+      <span class="tag c">En el pulmón</span>
+      <h3>Embolia pulmonar (EP)</h3>
+      <p>Un coágulo que llegó a los pulmones y bloquea el paso de la sangre. Es una emergencia.</p>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+    <p class="kicker">Por qué se forma</p>
+    <h2>La tríada de Virchow</h2>
+    <p class="lead" style="font-size:17px">Hace más de 150 años, el médico alemán Rudolf Virchow describió tres cosas que favorecen un coágulo. Mientras más se juntan, más probable es. Toca cada una.</p>
+  </div>
+
+  <figure class="card" id="triad">
+    <svg class="art" viewBox="0 0 320 290" role="img" aria-labelledby="tt td">
+      <title id="tt">Tríada de Virchow</title>
+      <desc id="td">Un triángulo con tres factores que favorecen un coágulo: flujo lento, pared de la vena dañada y sangre que coagula de más.</desc>
+      <path class="tri-edge" d="M160 62 L56 214 L264 214 Z"/>
+      <path class="clot" transform="translate(160 160) scale(1.7)" d="M-7 -2 C-8 -7 -2 -9 2 -7 C7 -8 9 -2 7 2 C8 7 2 9 -2 7 C-7 8 -9 3 -7 -2 Z"/>
+      <text x="160" y="190" text-anchor="middle" style="font-family:var(--f-body);font-size:12px;fill:var(--fg-2)">Coágulo</text>
+      <g class="node on" data-k="flow">
+        <circle cx="160" cy="62" r="32"/>
+        <path class="ic" d="M142 64 q6 -10 12 0 t12 0 t12 0"/>
+      </g>
+      <g class="node" data-k="wall">
+        <circle cx="56" cy="214" r="32"/>
+        <path class="ic" d="M38 204 H50 L54 210 L58 204 H74 M38 224 H74"/>
+      </g>
+      <g class="node" data-k="blood">
+        <circle cx="264" cy="214" r="32"/>
+        <path class="ic" d="M264 197 c9 12 13 18 13 24 a13 13 0 0 1 -26 0 c0 -6 4 -12 13 -24 z"/>
+      </g>
+      <text class="tl" x="160" y="20" text-anchor="middle">Flujo lento</text>
+      <text class="tl" x="56" y="266" text-anchor="middle">Pared de la</text>
+      <text class="tl" x="56" y="282" text-anchor="middle">vena dañada</text>
+      <text class="tl" x="264" y="266" text-anchor="middle">Sangre que</text>
+      <text class="tl" x="264" y="282" text-anchor="middle">coagula de más</text>
+    </svg>
+    <div class="opts">
+      <button type="button" class="opt" aria-pressed="true" data-k="flow">Flujo lento</button>
+      <button type="button" class="opt" aria-pressed="false" data-k="wall">Pared dañada</button>
+      <button type="button" class="opt" aria-pressed="false" data-k="blood">Coagula de más</button>
+    </div>
+    <figcaption class="cap" aria-live="polite">
+      <h3 id="trT">Flujo lento</h3>
+      <p id="trP">Cuando la sangre se mueve despacio por las venas de las piernas, se estanca y es más fácil que se junte en un coágulo. Las piernas necesitan que los músculos se muevan para empujar la sangre hacia arriba.</p>
+      <ul class="pills" id="trL"><li>Viajes largos sentado</li><li>Días en cama</li><li>Yeso en la pierna</li><li>Embarazo</li></ul>
+    </figcaption>
+  </figure>
+  <p class="note">Muchas situaciones activan más de un lado a la vez. Una cirugía, por ejemplo, daña la pared de la vena, deja a la persona en cama y activa la coagulación. Moverte ayuda al flujo, y los anticoagulantes actúan sobre la coagulación.</p>
+
+  <p class="note">Juntas se llaman <b>tromboembolia venosa</b>. Cada 13 de octubre es el Día Mundial de la Trombosis.</p>
+</section>
+
+<!-- 2. SEÑALES -->
+<section class="panel" id="p-senales" hidden>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <p class="kicker">Reconoce las señales</p>
+    <h1>Dos lugares, dos tipos de aviso.</h1>
+  </div>
+  <div class="seg" data-g="senales">
+    <button type="button" aria-pressed="true" data-show="seg-tvp">En la pierna<small>TVP</small></button>
+    <button type="button" aria-pressed="false" data-show="seg-ep">En el pecho<small>EP</small></button>
+  </div>
+
+  <div class="sub" data-g="senales" id="seg-tvp">
+    <figure class="card">
+      <svg class="art" viewBox="0 0 320 258" role="img" aria-labelledby="lt ld">
+        <title id="lt">Pierna normal y pierna con trombosis</title>
+        <desc id="ld">La pierna con trombosis se ve más gruesa, enrojecida y caliente. Dentro de la vena hay un coágulo.</desc>
+        <g class="figure-body">
+          <path d="M72 10 C62 70 68 130 80 186 L86 206 L112 206 L116 186 C128 130 130 70 120 10 Z"/>
+          <rect x="68" y="204" width="56" height="26" rx="12"/>
+          <path d="M192 10 C168 70 170 136 196 186 L202 206 L250 206 L256 186 C282 136 284 70 260 10 Z"/>
+          <rect x="196" y="204" width="60" height="26" rx="12"/>
+        </g>
+        <path d="M192 10 C168 70 170 136 196 186 L202 206 L250 206 L256 186 C282 136 284 70 260 10 Z" style="fill:var(--clot);opacity:.22"/>
+        <path d="M226 18 C222 70 230 130 226 192" fill="none" stroke="var(--vein)" stroke-width="3.5" stroke-linecap="round" opacity=".75"/>
+        <path class="clot" transform="translate(227 118) scale(1.5)" d="M-7 -2 C-8 -7 -2 -9 2 -7 C7 -8 9 -2 7 2 C8 7 2 9 -2 7 C-7 8 -9 3 -7 -2 Z"/>
+        <g fill="none" stroke="var(--clot)" stroke-width="2.5" stroke-linecap="round">
+          <path d="M292 64 q7 8 0 16 t0 16 t0 16"/>
+          <path d="M306 78 q7 8 0 16 t0 16"/>
+        </g>
+        <g class="lbl" style="font-weight:700">
+          <text x="96" y="252" text-anchor="middle">Normal</text>
+          <text x="226" y="252" text-anchor="middle">Con TVP</text>
+        </g>
+      </svg>
+    </figure>
+    <ul class="signs">
+      <li><div><b>Hinchazón</b><span>En una pierna, o solo en una parte, como la pantorrilla.</span></div></li>
+      <li><div><b>Dolor o sensibilidad</b><span>A veces parece un calambre que no se quita.</span></div></li>
+      <li><div><b>Piel caliente</b><span>La zona se siente más caliente que el resto de la pierna.</span></div></li>
+      <li><div><b>Piel roja, morada u oscura</b><span>El color cambia en la zona afectada.</span></div></li>
+      <li><div><b>Venas más marcadas</b><span>Las venas de la superficie se notan más.</span></div></li>
+    </ul>
+    <p class="note">Casi siempre es un solo lado. Si se hinchan las dos piernas es menos común que sea trombosis, pero igual conviene consultar. A veces la TVP no da ninguna señal.</p>
+    <p class="note">Muchas cosas causan dolor o hinchazón en una pierna: golpes, lesiones del músculo, várices o infecciones. Solo un estudio puede confirmar una trombosis, así que no te diagnostiques solo.</p>
+    <div class="alert">
+      <p><strong>Si crees que puedes tener TVP:</strong> ve a urgencias o con tu médico el mismo día. No masajees la pierna y no esperes a ver si se pasa.</p>
+    </div>
+  </div>
+
+  <div class="sub" data-g="senales" id="seg-ep" hidden>
+    <figure class="card">
+      <svg class="art" viewBox="0 0 320 240" role="img" aria-labelledby="et ed">
+        <title id="et">Pulmones con un coágulo</title>
+        <desc id="ed">Un coágulo tapa una rama de un vaso del pulmón derecho. La zona de abajo recibe poca sangre.</desc>
+        <path class="lung" d="M148 36 C108 36 62 96 58 164 C56 204 80 218 112 210 C136 204 148 192 148 172 Z"/>
+        <path class="lung" d="M172 36 C212 36 258 96 262 164 C264 204 240 218 208 210 C184 204 172 192 172 172 Z"/>
+        <rect x="155" y="8" width="10" height="62" rx="5" style="fill:var(--surface-2);stroke:var(--vein);stroke-width:1.5"/>
+        <path class="branch" d="M160 70 L146 98 M160 70 L174 98"/>
+        <path class="branch" d="M146 98 L112 132 L88 176 M112 132 L116 182 M146 98 L136 156"/>
+        <path class="branch" d="M174 98 L208 132 M174 98 L184 156"/>
+        <path d="M214 138 C236 150 250 172 248 196 C240 206 222 206 204 196 C200 176 206 150 214 138 Z" style="fill:var(--clot-soft);stroke:var(--clot);stroke-width:1.5;stroke-dasharray:4 3"/>
+        <path class="branch dim" d="M208 132 L232 176 M208 132 L204 182"/>
+        <path class="clot" transform="translate(208 132) scale(1.4)" d="M-7 -2 C-8 -7 -2 -9 2 -7 C7 -8 9 -2 7 2 C8 7 2 9 -2 7 C-7 8 -9 3 -7 -2 Z"/>
+        <g class="lbl">
+          <text x="268" y="62">Coágulo</text>
+          <line x1="266" y1="58" x2="216" y2="124"/>
+        </g>
+      </svg>
+      <figcaption class="msg" style="margin-top:10px;text-align:center">La zona en rojo se queda con poca sangre y oxígeno.</figcaption>
+    </figure>
+    <ul class="signs red">
+      <li><div><b>Falta de aire repentina</b><span>Aparece sin haber hecho esfuerzo, o empeora rápido.</span></div></li>
+      <li><div><b>Dolor de pecho</b><span>Se siente más al respirar hondo o al toser.</span></div></li>
+      <li><div><b>Latidos rápidos</b><span>El corazón late muy rápido o irregular.</span></div></li>
+      <li><div><b>Mareo o desmayo</b><span>Sensación de que te vas a desmayar, o desmayo.</span></div></li>
+      <li><div><b>Tos, a veces con sangre</b><span>Una tos nueva que no se explica por un resfriado.</span></div></li>
+    </ul>
+    <div class="alert">
+      <p><strong>Esto es una emergencia.</strong> Si tienes falta de aire repentina o dolor de pecho, pide ayuda de inmediato. No manejes tú y no esperes a que se pase.</p>
+      <button type="button" class="btn danger" data-open-sheet>Qué hacer ahora</button>
+    </div>
+    <p class="note">La embolia puede ser el primer aviso, incluso si nunca te dolió la pierna.</p>
+  </div>
+</section>
+
+<!-- 3. MI RIESGO -->
+<section class="panel" id="p-riesgo" hidden>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <p class="kicker">Conoce tu riesgo</p>
+    <h1>Marca lo que te aplica.</h1>
+    <p class="lead">Mientras más factores se juntan, más atención conviene poner. Esto no es un diagnóstico.</p>
+  </div>
+
+  <div class="meter" id="meter" data-level="0">
+    <div class="row"><span class="lv" id="lv">Ningún factor marcado</span><span class="n"><b id="cnt">0</b> de 13</span></div>
+    <div class="bars" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p class="msg" id="rmsg" aria-live="polite">Aun así, conoce las señales. La trombosis también puede aparecer sin factores claros.</p>
+  </div>
+
+  <div class="group">
+    <h3>Situaciones del momento</h3>
+    <label class="chip"><input type="checkbox" class="rf"><span>Cirugía en los últimos 3 meses</span></label>
+    <label class="chip"><input type="checkbox" class="rf"><span>Hospitalizado o en cama varios días</span></label>
+    <label class="chip"><input type="checkbox" class="rf"><span>Yeso, férula o lesión grave en una pierna</span></label>
+    <label class="chip"><input type="checkbox" class="rf"><span>Viaje de más de 4 horas sentado, en las últimas semanas</span></label>
+    <label class="chip"><input type="checkbox" class="rf"><span>Embarazo, o parto en los últimos 3 meses</span></label>
+    <label class="chip"><input type="checkbox" class="rf"><span>Infección grave reciente</span></label>
+  </div>
+  <div class="group">
+    <h3>Condiciones de fondo</h3>
+    <label class="chip"><input type="checkbox" class="rf"><span>Anticonceptivos con estrógenos o terapia hormonal</span></label>
+    <label class="chip"><input type="checkbox" class="rf"><span>Cáncer o tratamiento contra el cáncer</span></label>
+    <label class="chip"><input type="checkbox" class="rf"><span>Ya tuve un coágulo antes</span></label>
+    <label class="chip"><input type="checkbox" class="rf"><span>Un familiar directo (padres o hermanos) tuvo un coágulo</span></label>
+    <label class="chip"><input type="checkbox" class="rf"><span>Tengo más de 60 años</span></label>
+    <label class="chip"><input type="checkbox" class="rf"><span>Obesidad</span></label>
+    <label class="chip"><input type="checkbox" class="rf"><span>Fumo</span></label>
+  </div>
+  <button type="button" class="btn" id="clear">Borrar marcas</button>
+  <p class="note">Si ya tienes hinchazón en una pierna, falta de aire o dolor de pecho, no uses esta lista. Busca atención.</p>
+</section>
+
+<!-- 4. PREVENIR -->
+<section class="panel" id="p-prevenir" hidden>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <p class="kicker">Prevención</p>
+    <h1>Moverse es la mejor defensa.</h1>
+    <p class="lead">Muchos coágulos se evitan con hábitos sencillos y con las medidas que indica tu médico.</p>
+  </div>
+
+  <div class="seg" data-g="prevenir">
+    <button type="button" aria-pressed="true" data-show="seg-habitos">Hábitos<small>Día a día</small></button>
+    <button type="button" aria-pressed="false" data-show="seg-medias">Medias<small>de compresión</small></button>
+  </div>
+
+  <div class="sub" data-g="prevenir" id="seg-habitos">
+  <div class="card pace">
+    <h2>Ejercicio de pies</h2>
+    <p style="color:var(--fg-2)">Hazlo sentado, en un viaje largo o en el trabajo. Activa la sangre de las pantorrillas.</p>
+    <svg class="art" style="max-width:200px" viewBox="0 0 200 150" role="img" aria-label="Pie que sube y baja la punta">
+      <rect x="50" y="0" width="34" height="100" rx="14" style="fill:var(--art)"/>
+      <g class="foot" id="foot">
+        <path d="M46 96 H84 L148 112 Q168 118 164 132 Q162 140 148 140 H56 Q42 140 42 126 Z" style="fill:var(--art)"/>
+      </g>
+      <circle cx="67" cy="100" r="3.5" style="fill:var(--vein)"/>
+    </svg>
+    <div class="count"><span id="pcount">0</span> / 15</div>
+    <div class="prog" aria-hidden="true"><i id="pbar"></i></div>
+    <p class="state" id="pstate" aria-live="polite">Toca para empezar.</p>
+    <button type="button" class="btn primary" id="pace">Empezar</button>
+  </div>
+
+  <div class="tips">
+    <div class="card tip">
+      <h3>En viajes largos</h3>
+      <ul>
+        <li>Levántate y camina cada 1 o 2 horas.</li>
+        <li>Mueve los tobillos mientras estás sentado.</li>
+        <li>Toma agua y evita el exceso de alcohol.</li>
+        <li>Si te sientas mucho, deja espacio para estirar las piernas.</li>
+      </ul>
+    </div>
+    <div class="card tip">
+      <h3>Después de una cirugía o en el hospital</h3>
+      <ul>
+        <li>Levántate y camina pronto, cuando el equipo médico te lo indique.</li>
+        <li>Pregunta si necesitas un medicamento o medias para prevenir coágulos.</li>
+      </ul>
+    </div>
+    <div class="card tip">
+      <h3>Todos los días</h3>
+      <ul>
+        <li>Camina y muévete a diario.</li>
+        <li>No fumes.</li>
+        <li>Cuida tu peso.</li>
+      </ul>
+    </div>
+    <div class="card tip">
+      <h3>Si tomas anticoagulantes</h3>
+      <ul>
+        <li>Tómalos todos los días, como te indicaron.</li>
+        <li>No los suspendas sin hablar con tu médico.</li>
+        <li>Avisa que los tomas antes de una cirugía o del dentista.</li>
+      </ul>
+    </div>
+    <div class="card tip">
+      <h3>Medias de compresión</h3>
+      <p style="color:var(--fg-2)">Ayudan a algunas personas, pero conviene usarlas con indicación médica. Aquí verás cuándo sirven y cómo ponerlas.</p>
+      <button type="button" class="btn" id="goMedias">Ver medias de compresión</button>
+    </div>
+  </div>
+  </div>
+
+  <div class="sub" data-g="prevenir" id="seg-medias" hidden>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h2>Medias de compresión</h2>
+      <p class="lead" style="font-size:17px">Son medias elásticas que aprietan la pierna de forma gradual. Ayudan a que la sangre suba hacia el corazón y reducen la hinchazón.</p>
+    </div>
+
+    <figure class="card">
+      <svg class="art" viewBox="0 0 320 290" role="img" aria-labelledby="mt md">
+        <title id="mt">Presión gradual de una media de compresión</title>
+        <desc id="md">Una pierna con una media que aprieta más en el tobillo y menos hacia arriba.</desc>
+        <defs>
+          <linearGradient id="gr" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" style="stop-color:var(--vein);stop-opacity:.1"/>
+            <stop offset="1" style="stop-color:var(--vein);stop-opacity:.75"/>
+          </linearGradient>
+          <clipPath id="legclip">
+            <path d="M84 10 C76 60 78 100 86 140 C92 175 94 205 96 238 L96 250 L128 250 L130 238 C132 205 134 175 140 140 C148 100 150 60 142 10 Z"/>
+            <rect x="88" y="244" width="62" height="26" rx="13"/>
+          </clipPath>
+        </defs>
+        <g class="figure-body">
+          <path d="M84 10 C76 60 78 100 86 140 C92 175 94 205 96 238 L96 250 L128 250 L130 238 C132 205 134 175 140 140 C148 100 150 60 142 10 Z"/>
+          <rect x="88" y="244" width="62" height="26" rx="13"/>
+        </g>
+        <rect x="60" y="100" width="110" height="172" clip-path="url(#legclip)" fill="url(#gr)"/>
+        <path d="M70 100 H156" stroke="var(--vein)" stroke-width="2.5" stroke-linecap="round" clip-path="url(#legclip)"/>
+        <g fill="none" stroke="var(--vein)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M176 232 H136 M144 225 L136 232 L144 239"/>
+          <path d="M176 156 H146 M153 150 L146 156 L153 162"/>
+          <path d="M168 106 H150 M156 100 L150 106 L156 112"/>
+        </g>
+        <g class="lbl">
+          <text x="184" y="229">Más presión</text>
+          <text x="184" y="244">en el tobillo</text>
+          <text x="184" y="153">Presión media</text>
+          <text x="184" y="168">en la pantorrilla</text>
+          <text x="184" y="103">Menos presión</text>
+          <text x="184" y="118">hacia arriba</text>
+        </g>
+      </svg>
+    </figure>
+
+    <div class="card tip">
+      <h3>Cuándo pueden servir</h3>
+      <ul>
+        <li>Para prevenir coágulos en algunas personas que se operan o están hospitalizadas, casi siempre junto con otras medidas.</li>
+        <li>En viajes largos en avión, en estudios redujeron los coágulos que no dan síntomas y, quizá, la hinchazón de las piernas.</li>
+        <li>Para aliviar la hinchazón, la pesadez y el cansancio de la pierna, por ejemplo después de una trombosis o con várices.</li>
+        <li>Después de una trombosis, en un estudio grande no evitaron por sí solas los problemas a largo plazo de la pierna, aunque algunas personas sienten alivio.</li>
+      </ul>
+      <p style="color:var(--fg-2)">Tu médico decide si las necesitas, con qué fuerza y por cuánto tiempo. No sustituyen a los anticoagulantes cuando los necesitas.</p>
+    </div>
+
+    <div class="card tip">
+      <h3>Qué fuerza tienen</h3>
+      <p style="color:var(--fg-2)">La fuerza se mide en mmHg. Mientras más alto el número, más aprietan.</p>
+      <div class="lvls">
+        <div class="lvl"><b>15 a 20 mmHg</b><span>Suave. Para piernas cansadas y algunos viajes.</span></div>
+        <div class="lvl"><b>20 a 30 mmHg</b><span>Media. La más usada cuando un médico las indica.</span></div>
+        <div class="lvl"><b>30 a 40 mmHg</b><span>Fuerte. Solo con indicación y asesoría.</span></div>
+      </div>
+      <p style="color:var(--fg-2)">Las hay a la rodilla, al muslo y tipo pantimedia. Las de rodilla son más fáciles de poner, y tu médico te dice cuál te toca.</p>
+    </div>
+
+    <div class="card tip">
+      <h3>Cómo ponerlas</h3>
+      <ol class="stepsl">
+        <li><span>Ponlas por la mañana, antes de que la pierna se hinche.</span></li>
+        <li><span>Voltea la media hasta el talón y mete el pie.</span></li>
+        <li><span>Sube la tela poco a poco, sin jalarla de golpe.</span></li>
+        <li><span>Estira las arrugas para que no queden dobleces.</span></li>
+        <li><span>Revisa que el borde de arriba quede plano. No lo dobles hacia abajo, porque aprieta como un torniquete.</span></li>
+      </ol>
+    </div>
+
+    <div class="card tip">
+      <h3>Cuidados</h3>
+      <ul>
+        <li>Mídete el tobillo, la pantorrilla y el largo de la pierna por la mañana. Una talla equivocada aprieta de más o no sirve.</li>
+        <li>Quítalas por la noche, salvo que te indiquen lo contrario.</li>
+        <li>Revisa la piel de pies y piernas todos los días.</li>
+        <li>Lávalas como indica el fabricante y cámbialas cuando pierdan elasticidad, por lo general a los 3 a 6 meses de uso diario.</li>
+      </ul>
+    </div>
+
+    <div class="warnbox">
+      <strong>Consulta antes de usarlas si tienes:</strong>
+      <ul>
+        <li>Mala circulación en las piernas, como pies fríos o dolor al caminar que mejora al parar.</li>
+        <li>Heridas, infecciones o piel muy delicada en las piernas.</li>
+        <li>Poca sensibilidad en los pies, por ejemplo por diabetes.</li>
+        <li>Hinchazón de piernas por problemas del corazón o del riñón.</li>
+        <li>Alergia al látex o a la tela de la media.</li>
+      </ul>
+    </div>
+
+    <div class="alert">
+      <p><strong>Quítatelas y consulta si:</strong> el dolor aumenta, sientes hormigueo o entumecimiento, los dedos se ponen fríos o morados, o la piel se irrita o sale ampolla.</p>
+      <p>Si crees que tienes una trombosis, no uses medias en lugar de ir a urgencias.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. MÁS -->
+<section class="panel" id="p-mas" hidden>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <p class="kicker">Más información</p>
+    <h1>Estudios, tratamiento y dudas comunes.</h1>
+  </div>
+
+  <details>
+    <summary>Cómo se diagnostica</summary>
+    <div class="body">
+      <p><b>Ultrasonido de la pierna.</b> Muestra si la sangre fluye bien por la vena. No duele.</p>
+      <p><b>Análisis de sangre (dímero D).</b> Puede ayudar a descartar un coágulo. Si sale alto, se hacen más estudios.</p>
+      <p><b>Tomografía del tórax con contraste.</b> Muestra si hay un coágulo en las arterias del pulmón.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Cómo se trata</summary>
+    <div class="body">
+      <p><b>Anticoagulantes.</b> Se toman en pastillas o se aplican en inyección. Se les dice "adelgazantes de la sangre", pero la sangre no se vuelve más delgada. Evitan que el coágulo crezca y que se formen otros mientras tu cuerpo lo va disolviendo.</p>
+      <p><b>Duración.</b> Casi siempre al menos 3 meses. Tu médico decide según tu caso.</p>
+      <p><b>Casos graves.</b> En el hospital se pueden usar medicinas que disuelven el coágulo o procedimientos para quitarlo.</p>
+      <p><b>Avisa de inmediato</b> si tienes sangrado que no para, heces negras, moretones grandes sin golpe o un golpe fuerte en la cabeza.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Después del tratamiento</summary>
+    <div class="body">
+      <p>Algunas personas quedan con hinchazón o cansancio en la pierna, o con falta de aire que no mejora. Si te pasa, díselo a tu médico.</p>
+      <p>Moverte y caminar ayuda a recuperarte. Un coágulo puede volver a formarse, por eso importa el seguimiento.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Si tomas anticoagulantes</summary>
+    <div class="body">
+      <ul>
+        <li>Tómalos a la misma hora cada día. Si olvidas una dosis, pregunta a tu médico qué hacer y no dupliques la siguiente por tu cuenta.</li>
+        <li>Antes de tomar otro medicamento, suplemento o remedio herbal, pregunta. Algunos analgésicos, como ibuprofeno, naproxeno o aspirina, pueden aumentar el riesgo de sangrado.</li>
+        <li>Con warfarina te harán análisis de sangre (INR) con regularidad. Conviene comer una cantidad estable de verduras de hoja verde.</li>
+        <li>Usa cepillo de dientes suave y ten cuidado con los golpes y los cortes.</li>
+        <li>Avisa que los tomas a tu dentista, a otros médicos y en urgencias. Puedes llevar una nota en la cartera.</li>
+      </ul>
+      <p><b>Ve a urgencias</b> si tienes sangrado que no para, vómito con sangre o negro, heces negras o con sangre, un golpe fuerte en la cabeza o un dolor de cabeza intenso y repentino.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Situaciones especiales</summary>
+    <div class="body">
+      <p><b>Embarazo y después del parto.</b> Aumentan el riesgo. Es común que en el embarazo se hinchen las dos piernas. Si se hincha o duele solo una, o te falta el aire, avisa de inmediato. Algunos anticoagulantes no se pueden usar en el embarazo, y tu médico elegirá el adecuado.</p>
+      <p><b>Anticonceptivos y terapia hormonal.</b> Los estrógenos, en pastillas, parches, anillos o terapia hormonal, aumentan el riesgo. Si tienes antecedentes tuyos o de tu familia, o varios factores de riesgo, habla con tu médico sobre otras opciones. No cambies ni suspendas tu método sin consultarlo.</p>
+      <p><b>Si ya tuviste una trombosis o embolia.</b> Avisa siempre antes de una cirugía o de un viaje largo, porque quizá necesites prevención extra. Puede repetirse, así que conoce las señales.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Preguntas para tu médico</summary>
+    <div class="body">
+      <ul class="qlist" id="qlist">
+        <li>¿Qué tipo de coágulo tengo y dónde está?</li>
+        <li>¿Por qué me pasó y hay algo que pueda cambiar?</li>
+        <li>¿Qué medicamento tomaré, a qué hora y por cuánto tiempo?</li>
+        <li>¿Qué hago si olvido una dosis?</li>
+        <li>¿Qué medicamentos, suplementos o alimentos debo evitar?</li>
+        <li>¿Necesito medias de compresión? ¿De qué fuerza y por cuánto tiempo?</li>
+        <li>¿Qué actividad física puedo hacer y cuándo puedo viajar?</li>
+        <li>¿Qué señales me obligan a ir a urgencias?</li>
+        <li>¿Cuándo es mi próxima cita y qué estudios faltan?</li>
+        <li>¿Mis familiares deberían hacerse algún estudio?</li>
+      </ul>
+      <button type="button" class="btn" id="copyQ">Copiar preguntas</button>
+      <p class="copymsg" id="copyMsg" aria-live="polite"></p>
+    </div>
+  </details>
+  <details>
+    <summary>Palabras que escucharás</summary>
+    <div class="body">
+      <dl class="gl">
+        <div><dt>Coágulo o trombo</dt><dd>Masa de sangre que se vuelve sólida y estorba el paso de la sangre.</dd></div>
+        <div><dt>Trombosis</dt><dd>Formación de un coágulo dentro de un vaso sanguíneo.</dd></div>
+        <div><dt>Émbolo</dt><dd>Coágulo que viaja por la sangre y se atora lejos de donde se formó.</dd></div>
+        <div><dt>Vena profunda</dt><dd>Vena grande que pasa entre los músculos. Las superficiales están bajo la piel.</dd></div>
+        <div><dt>Anticoagulante</dt><dd>Medicamento que evita que un coágulo crezca y que se formen otros.</dd></div>
+        <div><dt>Heparina</dt><dd>Anticoagulante que se aplica en inyección.</dd></div>
+        <div><dt>INR</dt><dd>Análisis que mide qué tan lento coagula la sangre en quienes toman warfarina.</dd></div>
+        <div><dt>Dímero D</dt><dd>Sustancia que sube en la sangre cuando el cuerpo está deshaciendo coágulos.</dd></div>
+        <div><dt>Doppler</dt><dd>Ultrasonido que muestra cómo fluye la sangre por las venas.</dd></div>
+        <div><dt>Trombofilia</dt><dd>Tendencia de la sangre a formar coágulos con más facilidad, a veces hereditaria.</dd></div>
+        <div><dt>Síndrome postrombótico</dt><dd>Hinchazón, dolor o cambios en la piel que algunas personas tienen en la pierna meses o años después de una trombosis.</dd></div>
+      </dl>
+    </div>
+  </details>
+
+  <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px">
+    <h2>¿Mito o verdad?</h2>
+    <p class="score" id="score" aria-live="polite">Responde las afirmaciones.</p>
+  </div>
+  <div class="tips" id="myths"></div>
+
+  <div style="display:flex;flex-direction:column;gap:6px;margin-top:10px">
+    <h2>Bibliografía</h2>
+    <p style="color:var(--fg-2)">Fuentes en las que se basa esta guía. Las guías y estudios están en inglés, salvo los del IMSS y MedlinePlus. Las ligas abren sitios externos y pueden cambiar.</p>
+  </div>
+
+  <div class="refgroup">
+    <h3>Guías y organismos</h3>
+    <ul class="refs">
+      <li>Centers for Disease Control and Prevention (CDC). <a href="https://www.cdc.gov/blood-clots/about/" target="_blank" rel="noopener">About Venous Thromboembolism (Blood Clots)</a>. Revisado el 5 de marzo de 2025.</li>
+      <li>Ortel TL, et al. <a href="https://pubmed.ncbi.nlm.nih.gov/33007077/" target="_blank" rel="noopener">American Society of Hematology 2020 guidelines for management of venous thromboembolism: treatment of deep vein thrombosis and pulmonary embolism</a>. Blood Adv. 2020;4(19):4693-4738.</li>
+      <li>Konstantinides SV, et al. <a href="https://doi.org/10.1093/eurheartj/ehz405" target="_blank" rel="noopener">2019 ESC Guidelines for the diagnosis and management of acute pulmonary embolism</a>. Eur Heart J. 2020;41(4):543-603.</li>
+      <li>National Institute for Health and Care Excellence (NICE). <a href="https://www.nice.org.uk/guidance/ng158" target="_blank" rel="noopener">Venous thromboembolic diseases: diagnosis, management and thrombophilia testing (NG158)</a>.</li>
+      <li>International Society on Thrombosis and Haemostasis (ISTH). <a href="https://www.worldthrombosisday.org/" target="_blank" rel="noopener">World Thrombosis Day</a>. Se conmemora cada 13 de octubre, natalicio de Rudolf Virchow.</li>
+    </ul>
+  </div>
+
+  <div class="refgroup">
+    <h3>Estudios</h3>
+    <ul class="refs">
+      <li>Clarke MJ, et al. <a href="https://pubmed.ncbi.nlm.nih.gov/33878207/" target="_blank" rel="noopener">Compression stockings for preventing deep vein thrombosis in airline passengers</a>. Cochrane Database Syst Rev. 2021;4:CD004002.</li>
+      <li>Kahn SR, et al. Compression stockings to prevent post-thrombotic syndrome: a randomised placebo-controlled trial (estudio SOX). Lancet. 2014;383(9920):880-888. <a href="https://clinicaltrials.gov/study/NCT00143598" target="_blank" rel="noopener">Registro del estudio</a>.</li>
+      <li>Bagot CN, Arya R. Virchow and his triad: a question of attribution. Br J Haematol. 2008;143(2):180-190.</li>
+    </ul>
+  </div>
+
+  <div class="refgroup">
+    <h3>En español y México</h3>
+    <ul class="refs">
+      <li><a href="https://revistamedica.imss.gob.mx/index.php/revista_medica/article/view/1707" target="_blank" rel="noopener">Guía de práctica clínica. Diagnóstico y tratamiento de la enfermedad tromboembólica venosa</a>. Rev Med Inst Mex Seguro Soc.</li>
+      <li><a href="https://revistamedica.imss.gob.mx/index.php/revista_medica/article/view/1643" target="_blank" rel="noopener">La enfermedad tromboembólica venosa en el IMSS y en México</a>. Rev Med Inst Mex Seguro Soc.</li>
+      <li>MedlinePlus, Biblioteca Nacional de Medicina de EE. UU. <a href="https://medlineplus.gov/spanish/ency/esp_imagepages/8984.htm" target="_blank" rel="noopener">Coágulo de sangre venoso</a> (ilustración).</li>
+    </ul>
+  </div>
+
+  <p class="legal">Esta guía es informativa. No sustituye la consulta con un profesional de la salud ni sirve para diagnosticar. Ante cualquier duda o síntoma, busca atención médica.</p>
+</section>
+
+</main>
+
+<nav class="tabs" aria-label="Secciones">
+  <div class="tabs-in">
+    <button class="tab" type="button" data-tab="que" aria-current="page"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg></span>Qué es</button>
+    <button class="tab" type="button" data-tab="senales"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></svg></span>Señales</button>
+    <button class="tab" type="button" data-tab="riesgo"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 9l2 2 3-3M8 16h8"/></svg></span>Mi riesgo</button>
+    <button class="tab" type="button" data-tab="prevenir"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg></span>Prevenir</button>
+    <button class="tab" type="button" data-tab="mas"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg></span>Más</button>
+  </div>
+</nav>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="scrim" data-close></div>
+  <div class="sheet-body" role="dialog" aria-modal="true" aria-labelledby="sheetT">
+    <h2 id="sheetT">Pide ayuda de inmediato</h2>
+    <div class="lg">
+      <b>Llama a emergencias o ve a urgencias si tienes:</b>
+      <ul>
+        <li>Falta de aire repentina</li>
+        <li>Dolor de pecho, sobre todo al respirar</li>
+        <li>Mareo fuerte o desmayo</li>
+        <li>Latidos muy rápidos</li>
+        <li>Tos con sangre</li>
+      </ul>
+    </div>
+    <p>En México marca <span class="num">911</span>. En otros países usa el número local de emergencias.</p>
+    <p>No manejes tú y no esperes a que se pase.</p>
+    <p><b>Ve a urgencias el mismo día</b> si solo tienes hinchazón, dolor, calor y enrojecimiento en una pierna, aunque no te falte el aire.</p>
+    <p>Si tomas anticoagulantes y tienes sangrado que no para o un golpe fuerte en la cabeza, también ve a urgencias.</p>
+    <button type="button" class="btn primary" id="sheetClose">Cerrar</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* pestañas */
+  var tabs=$$('.tab'), panels=$$('.panel');
+  function showTab(id,scroll){
+    tabs.forEach(function(t){ if(t.dataset.tab===id) t.setAttribute('aria-current','page'); else t.removeAttribute('aria-current'); });
+    panels.forEach(function(p){ p.hidden = p.id!=='p-'+id; });
+    if(id==='que') place(cur);
+    if(scroll) window.scrollTo(0,0);
+  }
+  tabs.forEach(function(t){ t.addEventListener('click',function(){ showTab(t.dataset.tab,true); }); });
+
+  /* recorrido del coágulo */
+  var vp=$('#vein'), clot=$('#clot'), lungL=$('#lungL');
+  var L=290; try{ L=vp.getTotalLength()||290; }catch(e){}
+  var stops=[0.07,0.6,1], cur=stops[0], raf=0;
+  var texts=[
+    ['Se forma el coágulo','En una vena profunda de la pierna la sangre se mueve más lento y se junta en un coágulo. Esto se llama trombosis venosa profunda.'],
+    ['El coágulo viaja','Si un pedazo se suelta, la sangre se lo lleva hacia arriba por las venas y pasa por el corazón.'],
+    ['Se atora en el pulmón','En el pulmón los vasos son cada vez más pequeños. El coágulo se queda atorado y tapa el paso de la sangre. Esto es una embolia pulmonar y puede poner en peligro la vida.']
+  ];
+  function place(p){
+    try{ var pt=vp.getPointAtLength(p*L); clot.setAttribute('transform','translate('+pt.x.toFixed(1)+' '+pt.y.toFixed(1)+')'); }catch(e){}
+  }
+  function move(to){
+    cancelAnimationFrame(raf);
+    if(reduce.matches){ cur=to; place(to); return; }
+    var from=cur, t0=performance.now(), d=1400;
+    (function f(t){
+      var k=Math.min(1,(t-t0)/d), e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      cur=from+(to-from)*e; place(cur);
+      if(k<1) raf=requestAnimationFrame(f);
+    })(t0);
+  }
+  var stepBtns=$$('.step');
+  stepBtns.forEach(function(b){
+    b.addEventListener('click',function(){
+      var i=+b.dataset.i;
+      stepBtns.forEach(function(x){ x.setAttribute('aria-pressed', x===b); });
+      $('#capT').textContent=texts[i][0]; $('#capP').textContent=texts[i][1];
+      lungL.classList.toggle('blocked', i===2);
+      move(stops[i]);
+    });
+  });
+  place(cur);
+
+  /* selectores de sección */
+  function showSub(g,id){
+    $$('.seg[data-g="'+g+'"] button').forEach(function(x){ x.setAttribute('aria-pressed', x.dataset.show===id); });
+    $$('.sub[data-g="'+g+'"]').forEach(function(s){ s.hidden = s.id!==id; });
+  }
+  $$('.seg').forEach(function(seg){
+    $$('button',seg).forEach(function(b){
+      b.addEventListener('click',function(){ showSub(seg.dataset.g,b.dataset.show); });
+    });
+  });
+  $('#goMedias').addEventListener('click',function(){ showSub('prevenir','seg-medias'); window.scrollTo(0,0); });
+
+  /* tríada de Virchow */
+  var tri={
+    flow:['Flujo lento','Cuando la sangre se mueve despacio por las venas de las piernas, se estanca y es más fácil que se junte en un coágulo. Las piernas necesitan que los músculos se muevan para empujar la sangre hacia arriba.',['Viajes largos sentado','Días en cama','Yeso en la pierna','Embarazo']],
+    wall:['Pared de la vena dañada','El interior de una vena es liso y protege contra los coágulos. Si se lastima o se inflama, el cuerpo intenta repararla y ahí se puede formar un coágulo.',['Cirugías','Fracturas y golpes fuertes','Catéteres en una vena','Infecciones graves','Fumar']],
+    blood:['Sangre que coagula de más','Coagular sirve para frenar una hemorragia. Pero a veces el cuerpo activa la coagulación de más y la sangre forma coágulos con más facilidad.',['Cáncer','Embarazo y posparto','Estrógenos (anticonceptivos, terapia hormonal)','Infecciones graves','Alteraciones hereditarias de la coagulación']]
+  };
+  function setTri(k){
+    $$('#triad .opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.k===k); });
+    $$('#triad .node').forEach(function(n){ n.classList.toggle('on', n.dataset.k===k); });
+    $('#trT').textContent=tri[k][0]; $('#trP').textContent=tri[k][1];
+    var ul=$('#trL'); ul.innerHTML='';
+    tri[k][2].forEach(function(x){ var li=document.createElement('li'); li.textContent=x; ul.appendChild(li); });
+  }
+  $$('#triad .opt, #triad .node').forEach(function(el){ el.addEventListener('click',function(){ setTri(el.dataset.k); }); });
+
+  /* copiar preguntas */
+  $('#copyQ').addEventListener('click',function(){
+    var txt=$$('#qlist li').map(function(li){ return '• '+li.textContent; }).join('\n');
+    function pick(){ try{ var r=document.createRange(); r.selectNodeContents($('#qlist')); var s=getSelection(); s.removeAllRanges(); s.addRange(r); }catch(e){} }
+    function msg(ok){ $('#copyMsg').textContent = ok ? 'Copiado.' : 'Selecciona el texto y cópialo.'; }
+    try{
+      navigator.clipboard.writeText(txt).then(function(){ msg(true); },function(){ pick(); msg(false); });
+    }catch(e){ pick(); msg(false); }
+  });
+
+  /* riesgo */
+  var rf=$$('.rf'), meter=$('#meter');
+  function updRisk(){
+    var n=rf.filter(function(c){return c.checked}).length, lvl, name, msg;
+    if(n===0){ lvl=0; name='Ningún factor marcado'; msg='Aun así, conoce las señales. La trombosis también puede aparecer sin factores claros.'; }
+    else if(n<=2){ lvl=1; name='Pocos factores'; msg='Tener un factor no significa que vayas a tener un coágulo. Mantente en movimiento y conoce las señales.'; }
+    else if(n<=4){ lvl=2; name='Varios factores'; msg='Varios factores juntos piden más atención. Si vas a operarte o a viajar mucho tiempo, pregunta a tu médico qué puedes hacer.'; }
+    else { lvl=3; name='Muchos factores'; msg='Habla con tu médico sobre tu riesgo, sobre todo antes de una cirugía, un viaje largo o una hospitalización.'; }
+    meter.dataset.level=lvl; $('#lv').textContent=name; $('#cnt').textContent=n; $('#rmsg').textContent=msg;
+  }
+  rf.forEach(function(c){ c.addEventListener('change',function(){ c.closest('.chip').classList.toggle('on',c.checked); updRisk(); }); });
+  $('#clear').addEventListener('click',function(){ rf.forEach(function(c){ c.checked=false; c.closest('.chip').classList.remove('on'); }); updRisk(); });
+
+  /* ejercicio de pies */
+  var foot=$('#foot'), pbtn=$('#pace'), timer=null, reps=0, up=false, TOTAL=15;
+  function setFoot(u){ foot.style.transform = u ? 'rotate(-24deg)' : 'rotate(14deg)'; }
+  function stopPace(done){
+    clearInterval(timer); timer=null; setFoot(false);
+    pbtn.textContent = done ? 'Repetir' : 'Empezar';
+    $('#pstate').textContent = done ? 'Listo. Repite cada 1 o 2 horas en un viaje largo.' : 'Toca para empezar.';
+  }
+  function tick(){
+    up=!up; setFoot(up);
+    if(up){ $('#pstate').textContent='Sube la punta del pie'; }
+    else {
+      reps++; $('#pcount').textContent=reps; $('#pbar').style.width=(reps/TOTAL*100)+'%';
+      if(reps>=TOTAL){ stopPace(true); return; }
+      $('#pstate').textContent='Baja la punta del pie';
+    }
+  }
+  pbtn.addEventListener('click',function(){
+    if(timer){ stopPace(false); return; }
+    reps=0; up=false; $('#pcount').textContent=0; $('#pbar').style.width='0';
+    pbtn.textContent='Detener'; $('#pstate').textContent='Prepárate…';
+    timer=setInterval(tick,1500);
+  });
+  setFoot(false);
+
+  /* mitos */
+  var myths=[
+    {q:'La trombosis solo les pasa a personas mayores.',a:false,e:'El riesgo sube con la edad, pero puede ocurrir a cualquier edad, sobre todo con cirugías, embarazo, hormonas o mucho tiempo sin moverse.'},
+    {q:'Si no me duele la pierna, no puedo tener un coágulo.',a:false,e:'A veces la trombosis no da señales. El primer aviso puede ser la falta de aire por una embolia.'},
+    {q:'Dar masaje a una pierna hinchada y dolorosa ayuda a deshacer el coágulo.',a:false,e:'No se recomienda masajear. Si sospechas trombosis, busca atención médica.'},
+    {q:'Solo se forman coágulos en los viajes en avión.',a:false,e:'Cualquier viaje largo sentado cuenta, en auto, autobús o tren. También estar mucho tiempo en cama o en el sillón.'},
+    {q:'Caminar y moverte ayuda a prevenir la trombosis.',a:true,e:'Mover las piernas ayuda a que la sangre circule y no se estanque.'},
+    {q:'Una embolia pulmonar puede poner en riesgo la vida.',a:true,e:'Por eso la falta de aire repentina o el dolor de pecho se atienden como emergencia.'},
+    {q:'Después de tratarse, un coágulo ya nunca vuelve.',a:false,e:'Puede repetirse. El seguimiento con tu médico y la prevención son importantes.'}
+  ];
+  var box=$('#myths'), ok=0, done=0;
+  myths.forEach(function(m){
+    var el=document.createElement('article'); el.className='myth';
+    el.innerHTML='<p class="q"></p><div class="ans"><button type="button" data-v="1">Verdad</button><button type="button" data-v="0">Mito</button></div><div class="res" hidden></div>';
+    el.querySelector('.q').textContent=m.q;
+    var res=el.querySelector('.res');
+    $$('button',el).forEach(function(b){
+      b.addEventListener('click',function(){
+        var pick=b.dataset.v==='1', right=pick===m.a;
+        $$('button',el).forEach(function(x){x.disabled=true});
+        b.classList.add('pick');
+        res.hidden=false; res.className='res '+(right?'good':'bad');
+        res.innerHTML='<b></b><span></span>';
+        res.querySelector('b').textContent=(right?'Correcto. ':'Casi. ')+(m.a?'Es verdad.':'Es un mito.');
+        res.querySelector('span').textContent=m.e;
+        done++; if(right) ok++;
+        $('#score').textContent='Aciertos: '+ok+' de '+done+' respondidas';
+      });
+    });
+    box.appendChild(el);
+  });
+
+  /* urgencias */
+  var sheet=$('#sheet'), last=null;
+  function openSheet(){ last=document.activeElement; sheet.hidden=false; document.body.style.overflow='hidden'; $('#sheetClose').focus(); }
+  function closeSheet(){ sheet.hidden=true; document.body.style.overflow=''; if(last&&last.focus) last.focus(); }
+  $('#sosBtn').addEventListener('click',openSheet);
+  $$('[data-open-sheet]').forEach(function(b){ b.addEventListener('click',openSheet); });
+  $('#sheetClose').addEventListener('click',closeSheet);
+  $('.scrim').addEventListener('click',closeSheet);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!sheet.hidden) closeSheet(); });
+
+  /* enlace directo a una pestaña */
+  try{ var h=location.hash.slice(1); if(['que','senales','riesgo','prevenir','mas'].indexOf(h)>-1) showTab(h,false); }catch(e){}
+})();
+</script>
+</body>
+</html>
